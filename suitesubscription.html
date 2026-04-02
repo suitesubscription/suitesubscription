@@ -768,51 +768,65 @@
  let selectedDates = [];
  let currentStep = 1;
 
- // â”€â”€ DAY TRACKING via localStorage â”€â”€
- function getMonthKey() {
+ // â”€â”€ AIRTABLE CONFIG â”€â”€
+ const AT_TOKEN = 'patrM9uBS7gCfle7v.edefa4fc1743c9ed66bd5b9662583d8b0a02129dccdb132f0c6e618dcbd733bc';
+ const AT_BASE = 'appL7Qz9hxgVi6bxk';
+ const AT_TABLE = 'Bookings';
+ const AT_URL = 'https://api.airtable.com/v0/' + AT_BASE + '/' + AT_TABLE;
+
+ function getCurrentMonth() {
  const now = new Date();
- return 'ss_days_' + now.getFullYear() + '_' + (now.getMonth() + 1);
+ return now.toLocaleString('default', { month: 'long' }) + ' ' + now.getFullYear();
  }
 
- function getMemberKey() {
- const email = document.getElementById('r-email') ? document.getElementById('r-email').value.trim().toLowerCase() : '';
- const plan = document.getElementById('r-plan') ? document.getElementById('r-plan').value : '';
- return getMonthKey() + '_' + email + '_' + plan.substring(0, 7);
- }
-
- function getDaysUsed() {
+ // Look up existing bookings for this member this month
+ async function fetchMemberBookings(email, plan) {
  try {
- const data = JSON.parse(localStorage.getItem(getMemberKey()) || '{"daysUsed":0,"weekendUsed":0,"bookings":[]}');
- // Reset if it's a new month
- const stored = localStorage.getItem(getMemberKey() + '_month');
- const currentMonth = getMonthKey();
- if (stored !== currentMonth) {
- localStorage.removeItem(getMemberKey());
- localStorage.setItem(getMemberKey() + '_month', currentMonth);
- return { daysUsed: 0, weekendUsed: 0, bookings: [] };
+ const filter = encodeURIComponent("AND({Email}='" + email + "',{Month}='" + getCurrentMonth() + "',{Plan}='" + plan + "')");
+ const res = await fetch(AT_URL + '?filterByFormula=' + filter, {
+ headers: { 'Authorization': 'Bearer ' + AT_TOKEN }
+ });
+ const data = await res.json();
+ if (!data.records || data.records.length === 0) return { daysUsed: 0, weekendUsed: 0, bookedDates: [] };
+ let totalDays = 0, totalWeekend = 0, allDates = [];
+ data.records.forEach(r => {
+ totalDays += (r.fields['Days Used'] || 0);
+ totalWeekend += (r.fields['Weekend Days'] || 0);
+ const dates = (r.fields['Dates Booked'] || '').split(',').map(d => d.trim()).filter(Boolean);
+ allDates = allDates.concat(dates);
+ });
+ return { daysUsed: totalDays, weekendUsed: totalWeekend, bookedDates: allDates };
+ } catch(e) {
+ console.warn('Airtable fetch error:', e);
+ return { daysUsed: 0, weekendUsed: 0, bookedDates: [] };
  }
- return data;
- } catch(e) { return { daysUsed: 0, weekendUsed: 0, bookings: [] }; }
  }
 
- function saveDaysUsed(daysUsed, weekendUsed, bookings) {
+ // Save booking to Airtable
+ async function saveBookingToAirtable(fields) {
  try {
- localStorage.setItem(getMemberKey(), JSON.stringify({ daysUsed, weekendUsed, bookings }));
- localStorage.setItem(getMemberKey() + '_month', getMonthKey());
- } catch(e) {}
+ await fetch(AT_URL, {
+ method: 'POST',
+ headers: { 'Authorization': 'Bearer ' + AT_TOKEN, 'Content-Type': 'application/json' },
+ body: JSON.stringify({ fields })
+ });
+ } catch(e) { console.warn('Airtable save error:', e); }
  }
+
+ // Cache member data after lookup
+ let memberBookingCache = null;
 
  function getRemainingDays() {
  const cfg = getPlanConfig();
- const used = getDaysUsed();
+ const used = memberBookingCache || { daysUsed: 0, weekendUsed: 0, bookedDates: [] };
  return {
- daysRemaining: cfg.totalDays - used.daysUsed,
- weekendRemaining: cfg.maxWeekend - used.weekendUsed,
+ daysRemaining: Math.max(0, cfg.totalDays - used.daysUsed),
+ weekendRemaining: Math.max(0, cfg.maxWeekend - used.weekendUsed),
  daysUsed: used.daysUsed,
  weekendUsed: used.weekendUsed,
  totalDays: cfg.totalDays,
  maxWeekend: cfg.maxWeekend,
- bookings: used.bookings || []
+ bookedDates: used.bookedDates || []
  };
  }
 
@@ -858,8 +872,8 @@
  const dateVal = monthName + ' ' + d + ', ' + year;
  const slot = document.createElement('div');
 
- // Check if already booked this month
- const alreadyBooked = remaining.bookings.includes(dateVal);
+ // Check if already booked this month (from Airtable)
+ const alreadyBooked = remaining.bookedDates.includes(dateVal);
  slot.className = 'date-slot' + (isWeekend ? ' weekend' : '') + (alreadyBooked ? ' disabled' : '');
  slot.textContent = label + (alreadyBooked ? ' (booked)' : '');
  slot.dataset.date = dateVal;
@@ -921,7 +935,7 @@
  document.getElementById('summary-card').innerHTML = rows.map(function(r) { return '<div class="summary-row"><span class="slabel">' + r[0] + '</span><span class="sval">' + r[1] + '</span></div>'; }).join('');
  }
 
- function goStep(n) {
+ async function goStep(n) {
  if (n === 2) {
  const fname = document.getElementById('r-fname').value.trim();
  const lname = document.getElementById('r-lname').value.trim();
@@ -931,6 +945,12 @@
  const err = document.getElementById('err-1');
  if (!fname || !lname || !email || !plan || !loc) { err.style.display = 'block'; return; }
  err.style.display = 'none';
+ // Show loading state
+ const nextBtn = document.querySelector('#rpanel-1 .btn-rnext');
+ nextBtn.classList.add('loading'); nextBtn.disabled = true;
+ // Fetch existing bookings from Airtable
+ memberBookingCache = await fetchMemberBookings(email, plan);
+ nextBtn.classList.remove('loading'); nextBtn.disabled = false;
  buildDateSlots();
  updateQuota();
  }
@@ -1001,17 +1021,25 @@
  notes: notes || 'None',
  submitted: submittedAt
  });
- // Save used days to localStorage
- const used = getDaysUsed();
+ // Save booking to Airtable
  const newWeekendCount = selectedDates.filter(d => {
  const dow = new Date(d).getDay();
  return dow === 5 || dow === 6;
  }).length;
- saveDaysUsed(
- used.daysUsed + selectedDates.length,
- used.weekendUsed + newWeekendCount,
- (used.bookings || []).concat(selectedDates)
- );
+ await saveBookingToAirtable({
+ 'Member Name': fname + ' ' + lname,
+ 'Email': email,
+ 'Phone': phone,
+ 'Plan': plan,
+ 'Location': loc,
+ 'Dates Booked': datesStr,
+ 'Month': getCurrentMonth(),
+ 'Days Used': selectedDates.length,
+ 'Weekend Days': newWeekendCount,
+ 'Confirmation #': confNum,
+ 'Submitted': submittedAt
+ });
+ memberBookingCache = null; // clear cache
 
  document.getElementById('reserve-form-wrap').style.display = 'none';
  document.querySelector('.reserve-steps').style.display = 'none';
