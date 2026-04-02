@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,12 +36,7 @@
  z-index: 1000;
  opacity: 0.4;
  }
- nav {
- position: fixed; top: 0; width: 100%; z-index: 999;
- padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center;
- background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent);
- backdrop-filter: blur(4px);
- }
+ nav { position: fixed; top: 0; width: 100%; z-index: 999; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; background: linear-gradient(to bottom, rgba(10,10,10,0.95), transparent); backdrop-filter: blur(4px); }
  .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); letter-spacing: 0.02em; text-decoration: none; }
  .logo span { color: var(--white); }
  nav a.cta-nav { background: var(--gold); color: var(--black); padding: 0.6rem 1.4rem; border-radius: 2px; font-weight: 600; font-size: 0.85rem; text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: background 0.2s; }
@@ -231,7 +227,6 @@
 </style>
 </head>
 <body>
-
 <nav>
  <a class="logo" href="#">Suite<span>Subscription</span></a>
  <div style="display:flex;gap:1rem;align-items:center;">
@@ -240,7 +235,6 @@
  <a href="#pricing" class="cta-nav">Join Now</a>
  </div>
 </nav>
-
 <section class="hero">
  <div class="hero-badge">Now Launching in the Southeast US</div>
  <h1>Your Salon<br>Suite. <em>Monthly.</em><br>No Weekly Stress.</h1>
@@ -260,7 +254,6 @@
  <button class="btn-owner" onclick="openOwnerModal()">List Your Suite</button>
  </div>
 </section>
-
 <div class="modal-overlay" id="owner-modal">
  <div class="modal-box">
  <button class="modal-close" onclick="closeOwnerModal()">x</button>
@@ -298,36 +291,21 @@
  </div>
  </div>
 </div>
-
 <div class="stats-bar">
  <div class="stat-item"><strong>2</strong><span>Flexible Plans</span></div>
  <div class="stat-item"><strong>0</strong><span>Weekly Fees</span></div>
  <div class="stat-item"><strong>SE</strong><span>Region Launch</span></div>
  <div class="stat-item"><strong>SE</strong><span>US Expansion</span></div>
 </div>
-
 <section id="how" style="padding-top:7rem;">
  <div class="section-label fade-in">The Process</div>
  <h2 class="section-title fade-in">Simple, <em>transparent,</em> made for pros.</h2>
  <div class="steps">
- <div class="step fade-in">
- <div class="step-num">01</div>
- <h3>Pick Your Plan</h3>
- <p>Choose the Starter or Pro membership based on how many days a month you need your suite. No surprises, no weekly invoices.</p>
- </div>
- <div class="step fade-in">
- <div class="step-num">02</div>
- <h3>Book Your Days</h3>
- <p>Use your monthly day allotment to reserve your suite. Flexible scheduling means you work when it makes sense for your business.</p>
- </div>
- <div class="step fade-in">
- <div class="step-num">03</div>
- <h3>Grow Your Brand</h3>
- <p>Walk into a professional suite, serve your clients, and keep 100% of your earnings. No booth rental drama, just your business.</p>
- </div>
+ <div class="step fade-in"><div class="step-num">01</div><h3>Pick Your Plan</h3><p>Choose the Starter or Pro membership based on how many days a month you need your suite. No surprises, no weekly invoices.</p></div>
+ <div class="step fade-in"><div class="step-num">02</div><h3>Book Your Days</h3><p>Use your monthly day allotment to reserve your suite. Flexible scheduling means you work when it makes sense for your business.</p></div>
+ <div class="step fade-in"><div class="step-num">03</div><h3>Grow Your Brand</h3><p>Walk into a professional suite, serve your clients, and keep 100% of your earnings. No booth rental drama, just your business.</p></div>
  </div>
 </section>
-
 <div id="pricing">
  <div class="section-label fade-in">Membership Plans</div>
  <h2 class="section-title fade-in">Invest in your<br><em>business, not fees.</em></h2>
@@ -370,7 +348,6 @@
  </div>
  </div>
 </div>
-
 <section>
  <div class="section-label fade-in">What Members Say</div>
  <h2 class="section-title fade-in">Built for <em>beauty pros</em> who mean business.</h2>
@@ -378,26 +355,17 @@
  <div class="testimonial-card fade-in">
  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
  <p>"I was paying weekly and constantly stressed about slow weeks. Switching to monthly billing completely changed my mindset. I just focus on booking clients now."</p>
- <div class="testimonial-author">
- <div class="author-avatar">TW</div>
- <div class="author-info"><strong>Tamika W.</strong><span>Atlanta, GA - Hair Stylist</span></div>
- </div>
+ <div class="testimonial-author"><div class="author-avatar">TW</div><div class="author-info"><strong>Tamika W.</strong><span>Atlanta, GA - Hair Stylist</span></div></div>
  </div>
  <div class="testimonial-card fade-in">
  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
  <p>"The Pro plan is unreal for the price. I don't have to fight for booking spots anymore and the suite is always ready. This is how suites should work."</p>
- <div class="testimonial-author">
- <div class="author-avatar">DS</div>
- <div class="author-info"><strong>Deja S.</strong><span>Marietta, GA - Esthetician</span></div>
- </div>
+ <div class="testimonial-author"><div class="author-avatar">DS</div><div class="author-info"><strong>Deja S.</strong><span>Marietta, GA - Esthetician</span></div></div>
  </div>
  <div class="testimonial-card fade-in">
  <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
  <p>"$97 a month for my own suite? I did the math and I'm saving over $200 compared to what I was paying weekly. This is a no-brainer for part-time stylists."</p>
- <div class="testimonial-author">
- <div class="author-avatar">MJ</div>
- <div class="author-info"><strong>Marcus J.</strong><span>Macon, GA - Barber</span></div>
- </div>
+ <div class="testimonial-author"><div class="author-avatar">MJ</div><div class="author-info"><strong>Marcus J.</strong><span>Macon, GA - Barber</span></div></div>
  </div>
  </div>
  <div class="location-strip fade-in">
@@ -416,34 +384,17 @@
  <div><a href="#pricing" class="btn-primary">Join the Waitlist</a></div>
  </div>
 </section>
-
 <section>
  <div class="section-label fade-in">Common Questions</div>
  <h2 class="section-title fade-in">Got questions?<br><em>We've got answers.</em></h2>
  <div class="faq-list">
- <div class="faq-item fade-in">
- <button class="faq-question" onclick="toggleFaq(this)">What's the difference between Starter and Pro?<span class="faq-icon">+</span></button>
- <div class="faq-answer">The Starter plan gives you 3 suite days per month (including 1 Friday or Saturday) for $97 - perfect for part-time stylists or those building their clientele. The Pro plan is $297/month for 8 suite days (including 3 Fri/Sat slots), plus priority booking and a monthly guest pass. Both plans are billed monthly with no weekly fees.</div>
- </div>
- <div class="faq-item fade-in">
- <button class="faq-question" onclick="toggleFaq(this)">Can I cancel anytime?<span class="faq-icon">+</span></button>
- <div class="faq-answer">Yes. SuiteSubscription is month-to-month with no long-term contracts. Cancel anytime before your next billing cycle with zero penalties.</div>
- </div>
- <div class="faq-item fade-in">
- <button class="faq-question" onclick="toggleFaq(this)">What's included in the suite?<span class="faq-icon">+</span></button>
- <div class="faq-answer">Each suite is fully equipped with professional-grade styling chairs, mirrors, wash station access, Wi-Fi, and climate control. You bring your tools and products - we handle everything else.</div>
- </div>
- <div class="faq-item fade-in">
- <button class="faq-question" onclick="toggleFaq(this)">Where are the locations?<span class="faq-icon">+</span></button>
- <div class="faq-answer">We're launching in Georgia first - with suites in the Atlanta Metro area including College Park and Riverdale. Expansion to Tennessee, North Carolina, Florida, and more is planned in the next 90 days.</div>
- </div>
- <div class="faq-item fade-in">
- <button class="faq-question" onclick="toggleFaq(this)">Can I roll over unused days?<span class="faq-icon">+</span></button>
- <div class="faq-answer">Starter plan days do not roll over month to month, but you can reschedule within the current billing month at no charge. Pro members have unlimited access so rollover doesn't apply.</div>
- </div>
+ <div class="faq-item fade-in"><button class="faq-question" onclick="toggleFaq(this)">What's the difference between Starter and Pro?<span class="faq-icon">+</span></button><div class="faq-answer">The Starter plan gives you 3 suite days per month (including 1 Friday or Saturday) for $97 - perfect for part-time stylists or those building their clientele. The Pro plan is $297/month for 8 suite days (including 3 Fri/Sat slots), plus priority booking and a monthly guest pass. Both plans are billed monthly with no weekly fees.</div></div>
+ <div class="faq-item fade-in"><button class="faq-question" onclick="toggleFaq(this)">Can I cancel anytime?<span class="faq-icon">+</span></button><div class="faq-answer">Yes. SuiteSubscription is month-to-month with no long-term contracts. Cancel anytime before your next billing cycle with zero penalties.</div></div>
+ <div class="faq-item fade-in"><button class="faq-question" onclick="toggleFaq(this)">What's included in the suite?<span class="faq-icon">+</span></button><div class="faq-answer">Each suite is fully equipped with professional-grade styling chairs, mirrors, wash station access, Wi-Fi, and climate control. You bring your tools and products - we handle everything else.</div></div>
+ <div class="faq-item fade-in"><button class="faq-question" onclick="toggleFaq(this)">Where are the locations?<span class="faq-icon">+</span></button><div class="faq-answer">We're launching in Georgia first - with suites in the Atlanta Metro area including College Park and Riverdale. Expansion to Tennessee, North Carolina, Florida, and more is planned in the next 90 days.</div></div>
+ <div class="faq-item fade-in"><button class="faq-question" onclick="toggleFaq(this)">Can I roll over unused days?<span class="faq-icon">+</span></button><div class="faq-answer">Starter plan days do not roll over month to month, but you can reschedule within the current billing month at no charge. Pro members have unlimited access so rollover doesn't apply.</div></div>
  </div>
 </section>
-
 <div id="reserve">
  <div class="reserve-inner">
  <div class="section-label fade-in">Member Booking</div>
@@ -488,14 +439,8 @@
  </div>
  <div class="rform-panel" id="rpanel-2">
  <div class="quota-bar">
- <div>
- <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Days Selected</div>
- <strong id="quota-display">0 / 3 days</strong>
- </div>
- <div style="text-align:right;">
- <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Weekend Slots Used</div>
- <strong id="weekend-display">0 / 1 Fri/Sat</strong>
- </div>
+ <div><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Days Selected</div><strong id="quota-display">0 / 3 days</strong></div>
+ <div style="text-align:right;"><div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;">Weekend Slots Used</div><strong id="weekend-display">0 / 1 Fri/Sat</strong></div>
  </div>
  <div class="slots-legend">
  <span><div class="legend-dot gold"></div> Friday / Saturday (premium)</span>
@@ -527,13 +472,11 @@
  </div>
  </div>
 </div>
-
 <div class="cta-band">
- <h2>Ready to Stop Paying Weekly?</h2>
- <p>Join 150 founding members launching across Georgia. Lock in your rate today.</p>
+ <h2>Your Suite. Your Schedule. Your Money.</h2>
+ <p>One monthly membership. Zero weekly stress. Built for Georgia's best beauty professionals.</p>
  <a href="#pricing" class="btn-dark">Start Your Membership Today</a>
 </div>
-
 <footer>
  <a class="logo" href="#">Suite<span>Subscription</span></a>
  <p>&copy; 2026 SuiteSubscription. Launching across the Southeast US.</p>
@@ -544,12 +487,9 @@
  <a href="#pricing">Join Now</a>
  </div>
 </footer>
-
 <script>
  const observer = new IntersectionObserver((entries) => {
- entries.forEach((entry) => {
- if (entry.isIntersecting) { setTimeout(() => { entry.target.classList.add('visible'); }, 100); }
- });
+ entries.forEach((entry) => { if (entry.isIntersecting) { setTimeout(() => { entry.target.classList.add('visible'); }, 100); } });
  }, { threshold: 0.1 });
  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
@@ -564,7 +504,6 @@
  'Starter ($97/mo - 3 days, 1 Fri/Sat)': { totalDays: 3, maxWeekend: 1 },
  'Pro ($297/mo - 8 days, 3 Fri/Sat)': { totalDays: 8, maxWeekend: 3 }
  };
-
  let selectedDates = [];
  let currentStep = 1;
 
@@ -588,10 +527,9 @@
  const dow = date.getDay();
  const isWeekend = dow === 5 || dow === 6;
  const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
- const label = dayName + ' ' + monthName + ' ' + d;
  const slot = document.createElement('div');
  slot.className = 'date-slot' + (isWeekend ? ' weekend' : '');
- slot.textContent = label;
+ slot.textContent = dayName + ' ' + monthName + ' ' + d;
  slot.dataset.date = monthName + ' ' + d + ', ' + year;
  slot.dataset.weekend = isWeekend ? '1' : '0';
  slot.addEventListener('click', () => toggleDate(slot));
@@ -608,10 +546,7 @@
  selectedDates = selectedDates.filter(d => d !== dateVal);
  slot.classList.remove('selected');
  } else {
- const weekendCount = selectedDates.filter(d => {
- const s = document.querySelector('.date-slot[data-date="' + d + '"]');
- return s && s.dataset.weekend === '1';
- }).length;
+ const weekendCount = selectedDates.filter(d => { const s = document.querySelector('.date-slot[data-date="' + d + '"]'); return s && s.dataset.weekend === '1'; }).length;
  if (selectedDates.length >= cfg.totalDays) return;
  if (isWeekend && weekendCount >= cfg.maxWeekend) return;
  selectedDates.push(dateVal);
@@ -622,10 +557,7 @@
 
  function updateQuota() {
  const cfg = getPlanConfig();
- const weekendCount = selectedDates.filter(d => {
- const s = document.querySelector('.date-slot[data-date="' + d + '"]');
- return s && s.dataset.weekend === '1';
- }).length;
+ const weekendCount = selectedDates.filter(d => { const s = document.querySelector('.date-slot[data-date="' + d + '"]'); return s && s.dataset.weekend === '1'; }).length;
  document.getElementById('quota-display').textContent = selectedDates.length + ' / ' + cfg.totalDays + ' days';
  document.getElementById('weekend-display').textContent = weekendCount + ' / ' + cfg.maxWeekend + ' Fri/Sat';
  }
@@ -657,10 +589,7 @@
  }
  if (n === 3) {
  const cfg = getPlanConfig();
- const weekendCount = selectedDates.filter(d => {
- const s = document.querySelector('.date-slot[data-date="' + d + '"]');
- return s && s.dataset.weekend === '1';
- }).length;
+ const weekendCount = selectedDates.filter(d => { const s = document.querySelector('.date-slot[data-date="' + d + '"]'); return s && s.dataset.weekend === '1'; }).length;
  const err = document.getElementById('err-2');
  if (selectedDates.length < cfg.totalDays || weekendCount < cfg.maxWeekend) { err.style.display = 'block'; return; }
  err.style.display = 'none';
@@ -669,10 +598,7 @@
  currentStep = n;
  document.querySelectorAll('.rform-panel').forEach(p => p.classList.remove('active'));
  document.getElementById('rpanel-' + n).classList.add('active');
- document.querySelectorAll('.rstep').forEach(function(el, i) {
- el.classList.toggle('active', i + 1 === n);
- el.classList.toggle('done', i + 1 < n);
- });
+ document.querySelectorAll('.rstep').forEach(function(el, i) { el.classList.toggle('active', i + 1 === n); el.classList.toggle('done', i + 1 < n); });
  document.getElementById('reserve').scrollIntoView({ behavior: 'smooth', block: 'start' });
  }
 
@@ -693,30 +619,8 @@
  const datesStr = selectedDates.join(', ');
  const submittedAt = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
  try {
- await emailjs.send('service_xzuymxb', 'template_4kzfuva', {
- to_email: email,
- to_name: fname + ' ' + lname,
- conf_num: confNum,
- member_name: fname + ' ' + lname,
- plan: plan,
- location: loc,
- dates: datesStr,
- notes: notes || 'None',
- phone: phone
- });
- await emailjs.send('service_xzuymxb', 'template_gkf3dch', {
- to_email: 'info@suitesubscription.com',
- to_name: 'SuiteSubscription Team',
- conf_num: confNum,
- member_name: fname + ' ' + lname,
- email: email,
- phone: phone,
- plan: plan,
- location: loc,
- dates: datesStr,
- notes: notes || 'None',
- submitted: submittedAt
- });
+ await emailjs.send('service_xzuymxb', 'template_4kzfuva', { to_email: email, to_name: fname + ' ' + lname, conf_num: confNum, member_name: fname + ' ' + lname, plan: plan, location: loc, dates: datesStr, notes: notes || 'None', phone: phone });
+ await emailjs.send('service_xzuymxb', 'template_gkf3dch', { to_email: 'info@suitesubscription.com', to_name: 'SuiteSubscription Team', conf_num: confNum, member_name: fname + ' ' + lname, email: email, phone: phone, plan: plan, location: loc, dates: datesStr, notes: notes || 'None', submitted: submittedAt });
  document.getElementById('reserve-form-wrap').style.display = 'none';
  document.querySelector('.reserve-steps').style.display = 'none';
  const success = document.getElementById('reserve-success');
@@ -742,19 +646,9 @@
  goStep(1);
  }
 
- function openOwnerModal() {
- document.getElementById('owner-modal').classList.add('open');
- document.body.style.overflow = 'hidden';
- }
-
- function closeOwnerModal() {
- document.getElementById('owner-modal').classList.remove('open');
- document.body.style.overflow = '';
- }
-
- document.getElementById('owner-modal').addEventListener('click', function(e) {
- if (e.target === this) closeOwnerModal();
- });
+ function openOwnerModal() { document.getElementById('owner-modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+ function closeOwnerModal() { document.getElementById('owner-modal').classList.remove('open'); document.body.style.overflow = ''; }
+ document.getElementById('owner-modal').addEventListener('click', function(e) { if (e.target === this) closeOwnerModal(); });
 
  async function submitOwner() {
  const fname = document.getElementById('o-fname').value.trim();
@@ -764,27 +658,10 @@
  const biz = document.getElementById('o-biz').value.trim();
  const suites = document.getElementById('o-suites').value;
  const city = document.getElementById('o-city').value.trim();
- if (!fname || !lname || !email || !phone || !biz || !suites || !city) {
- alert('Please fill in all fields before submitting.');
- return;
- }
+ if (!fname || !lname || !email || !phone || !biz || !suites || !city) { alert('Please fill in all fields before submitting.'); return; }
  try {
- await emailjs.send('service_xzuymxb', 'template_gkf3dch', {
- to_email: 'info@suitesubscription.com',
- to_name: 'SuiteSubscription Team',
- conf_num: 'OWNER-APP',
- member_name: fname + ' ' + lname,
- email: email,
- phone: phone,
- plan: 'Suite Owner Application',
- location: city,
- dates: suites + ' suites available',
- notes: 'Business: ' + biz,
- submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
- });
- } catch(e) {
- console.warn('Owner email failed:', e);
- }
+ await emailjs.send('service_xzuymxb', 'template_gkf3dch', { to_email: 'info@suitesubscription.com', to_name: 'SuiteSubscription Team', conf_num: 'OWNER-APP', member_name: fname + ' ' + lname, email: email, phone: phone, plan: 'Suite Owner Application', location: city, dates: suites + ' suites available', notes: 'Business: ' + biz, submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }) });
+ } catch(e) { console.warn('Owner email failed:', e); }
  document.getElementById('owner-form-wrap').style.display = 'none';
  document.getElementById('owner-success').style.display = 'block';
  setTimeout(closeOwnerModal, 4000);
@@ -799,3 +676,4 @@
 </script>
 </body>
 </html>
+```
