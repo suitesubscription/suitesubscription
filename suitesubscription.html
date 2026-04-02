@@ -984,17 +984,13 @@
  const btn = document.querySelector('#contact-form-wrap .btn-rnext');
  btn.classList.add('loading'); btn.disabled = true;
  try {
- await emailjs.send('service_xzuymxb', 'template_z1n7vk8', {
+ await emailjs.send('service_xzuymxb', 'template_yn9sdde', {
  to_email: 'info@suitesubscription.com',
- to_name: 'SuiteSubscription Team',
- conf_num: 'CONTACT',
- member_name: fname + ' ' + lname,
+ name: fname + ' ' + lname,
  email: email,
  phone: phone || 'Not provided',
- plan: subject,
- location: 'N/A',
- dates: 'N/A',
- notes: message,
+ subject: subject,
+ message: message,
  submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
  });
  document.getElementById('contact-form-wrap').style.display = 'none';
