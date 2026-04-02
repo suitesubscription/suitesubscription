@@ -768,6 +768,54 @@
  let selectedDates = [];
  let currentStep = 1;
 
+ // â”€â”€ DAY TRACKING via localStorage â”€â”€
+ function getMonthKey() {
+ const now = new Date();
+ return 'ss_days_' + now.getFullYear() + '_' + (now.getMonth() + 1);
+ }
+
+ function getMemberKey() {
+ const email = document.getElementById('r-email') ? document.getElementById('r-email').value.trim().toLowerCase() : '';
+ const plan = document.getElementById('r-plan') ? document.getElementById('r-plan').value : '';
+ return getMonthKey() + '_' + email + '_' + plan.substring(0, 7);
+ }
+
+ function getDaysUsed() {
+ try {
+ const data = JSON.parse(localStorage.getItem(getMemberKey()) || '{"daysUsed":0,"weekendUsed":0,"bookings":[]}');
+ // Reset if it's a new month
+ const stored = localStorage.getItem(getMemberKey() + '_month');
+ const currentMonth = getMonthKey();
+ if (stored !== currentMonth) {
+ localStorage.removeItem(getMemberKey());
+ localStorage.setItem(getMemberKey() + '_month', currentMonth);
+ return { daysUsed: 0, weekendUsed: 0, bookings: [] };
+ }
+ return data;
+ } catch(e) { return { daysUsed: 0, weekendUsed: 0, bookings: [] }; }
+ }
+
+ function saveDaysUsed(daysUsed, weekendUsed, bookings) {
+ try {
+ localStorage.setItem(getMemberKey(), JSON.stringify({ daysUsed, weekendUsed, bookings }));
+ localStorage.setItem(getMemberKey() + '_month', getMonthKey());
+ } catch(e) {}
+ }
+
+ function getRemainingDays() {
+ const cfg = getPlanConfig();
+ const used = getDaysUsed();
+ return {
+ daysRemaining: cfg.totalDays - used.daysUsed,
+ weekendRemaining: cfg.maxWeekend - used.weekendUsed,
+ daysUsed: used.daysUsed,
+ weekendUsed: used.weekendUsed,
+ totalDays: cfg.totalDays,
+ maxWeekend: cfg.maxWeekend,
+ bookings: used.bookings || []
+ };
+ }
+
  function getPlanConfig() {
  const plan = document.getElementById('r-plan').value;
  return PLAN_CONFIG[plan] || { totalDays: 3, maxWeekend: 1 };
@@ -783,27 +831,50 @@
  const daysInMonth = new Date(year, month + 1, 0).getDate();
  const today = now.getDate();
  const monthName = now.toLocaleString('default', { month: 'long' });
+ const remaining = getRemainingDays();
+
+ // Show remaining days banner
+ const existingBanner = document.getElementById('days-remaining-banner');
+ if (existingBanner) existingBanner.remove();
+ const banner = document.createElement('div');
+ banner.id = 'days-remaining-banner';
+ banner.style.cssText = 'background:rgba(29,185,84,0.1);border:1px solid rgba(29,185,84,0.3);border-radius:4px;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.85rem;color:#1DB954;font-weight:600;';
+ if (remaining.daysRemaining <= 0) {
+ banner.style.background = 'rgba(220,38,38,0.1)';
+ banner.style.borderColor = 'rgba(220,38,38,0.3)';
+ banner.style.color = '#fca5a5';
+ banner.textContent = 'You have used all ' + remaining.totalDays + ' days for this month. No more bookings available until next month.';
+ } else {
+ banner.textContent = 'You have ' + remaining.daysRemaining + ' day(s) remaining this month (' + remaining.daysUsed + ' of ' + remaining.totalDays + ' used). Weekend slots: ' + remaining.weekendRemaining + ' remaining.';
+ }
+ grid.parentNode.insertBefore(banner, grid);
+
  for (let d = today; d <= daysInMonth; d++) {
  const date = new Date(year, month, d);
  const dow = date.getDay();
  const isWeekend = dow === 5 || dow === 6;
  const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
  const label = dayName + ' ' + monthName + ' ' + d;
+ const dateVal = monthName + ' ' + d + ', ' + year;
  const slot = document.createElement('div');
- slot.className = 'date-slot' + (isWeekend ? ' weekend' : '');
- slot.textContent = label;
- slot.dataset.date = monthName + ' ' + d + ', ' + year;
+
+ // Check if already booked this month
+ const alreadyBooked = remaining.bookings.includes(dateVal);
+ slot.className = 'date-slot' + (isWeekend ? ' weekend' : '') + (alreadyBooked ? ' disabled' : '');
+ slot.textContent = label + (alreadyBooked ? ' (booked)' : '');
+ slot.dataset.date = dateVal;
  slot.dataset.weekend = isWeekend ? '1' : '0';
- slot.addEventListener('click', () => toggleDate(slot));
+ if (!alreadyBooked) slot.addEventListener('click', () => toggleDate(slot));
  grid.appendChild(slot);
  }
  updateQuota();
  }
 
  function toggleDate(slot) {
- const cfg = getPlanConfig();
+ const remaining = getRemainingDays();
  const dateVal = slot.dataset.date;
  const isWeekend = slot.dataset.weekend === '1';
+
  if (slot.classList.contains('selected')) {
  selectedDates = selectedDates.filter(d => d !== dateVal);
  slot.classList.remove('selected');
@@ -812,8 +883,16 @@
  const s = document.querySelector('.date-slot[data-date="' + d + '"]');
  return s && s.dataset.weekend === '1';
  }).length;
- if (selectedDates.length >= cfg.totalDays) return;
- if (isWeekend && weekendCount >= cfg.maxWeekend) return;
+
+ // Check against REMAINING days (not total)
+ if (selectedDates.length >= remaining.daysRemaining) {
+ alert('You can only select ' + remaining.daysRemaining + ' more day(s) this month based on your plan and previous bookings.');
+ return;
+ }
+ if (isWeekend && weekendCount >= remaining.weekendRemaining) {
+ alert('You have used all your weekend slots for this month.');
+ return;
+ }
  selectedDates.push(dateVal);
  slot.classList.add('selected');
  }
@@ -821,13 +900,13 @@
  }
 
  function updateQuota() {
- const cfg = getPlanConfig();
+ const remaining = getRemainingDays();
  const weekendCount = selectedDates.filter(d => {
  const s = document.querySelector('.date-slot[data-date="' + d + '"]');
  return s && s.dataset.weekend === '1';
  }).length;
- document.getElementById('quota-display').textContent = selectedDates.length + ' / ' + cfg.totalDays + ' days';
- document.getElementById('weekend-display').textContent = weekendCount + ' / ' + cfg.maxWeekend + ' Fri/Sat';
+ document.getElementById('quota-display').textContent = selectedDates.length + ' / ' + remaining.daysRemaining + ' days remaining';
+ document.getElementById('weekend-display').textContent = weekendCount + ' / ' + remaining.weekendRemaining + ' Fri/Sat remaining';
  }
 
  function buildSummary() {
@@ -856,13 +935,18 @@
  updateQuota();
  }
  if (n === 3) {
- const cfg = getPlanConfig();
+ const remaining = getRemainingDays();
  const weekendCount = selectedDates.filter(d => {
  const s = document.querySelector('.date-slot[data-date="' + d + '"]');
  return s && s.dataset.weekend === '1';
  }).length;
  const err = document.getElementById('err-2');
- if (selectedDates.length < cfg.totalDays || weekendCount < cfg.maxWeekend) { err.style.display = 'block'; return; }
+ // Must select at least 1 day, and weekend requirement only if they still have weekend slots to use
+ if (selectedDates.length < 1) { err.style.display = 'block'; err.textContent = 'Please select at least 1 day.'; return; }
+ if (remaining.weekendRemaining > 0 && weekendCount < 1 && remaining.daysRemaining >= 1) {
+ // Only require weekend if they haven't used their weekend slots yet and are booking their first session
+ // We allow flexible - don't force weekend selection
+ }
  err.style.display = 'none';
  buildSummary();
  }
@@ -917,6 +1001,18 @@
  notes: notes || 'None',
  submitted: submittedAt
  });
+ // Save used days to localStorage
+ const used = getDaysUsed();
+ const newWeekendCount = selectedDates.filter(d => {
+ const dow = new Date(d).getDay();
+ return dow === 5 || dow === 6;
+ }).length;
+ saveDaysUsed(
+ used.daysUsed + selectedDates.length,
+ used.weekendUsed + newWeekendCount,
+ (used.bookings || []).concat(selectedDates)
+ );
+
  document.getElementById('reserve-form-wrap').style.display = 'none';
  document.querySelector('.reserve-steps').style.display = 'none';
  const success = document.getElementById('reserve-success');
