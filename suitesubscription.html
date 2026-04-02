@@ -874,7 +874,7 @@
  const datesStr = selectedDates.join(', ');
  const submittedAt = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
  try {
- await emailjs.send('service_xzuymxb', 'template_4kzfuva', {
+ await emailjs.send('service_lbxsr09', 'template_4kzfuva', {
  to_email: email,
  to_name: fname + ' ' + lname,
  conf_num: confNum,
@@ -885,7 +885,7 @@
  notes: notes || 'None',
  phone: phone
  });
- await emailjs.send('service_xzuymxb', 'template_z1n7vk8', {
+ await emailjs.send('service_lbxsr09', 'template_z1n7vk8', {
  to_email: 'info@suitesubscription.com',
  to_name: 'SuiteSubscription Team',
  conf_num: confNum,
@@ -950,7 +950,7 @@
  return;
  }
  try {
- await emailjs.send('service_xzuymxb', 'template_z1n7vk8', {
+ await emailjs.send('service_lbxsr09', 'template_z1n7vk8', {
  to_email: 'info@suitesubscription.com',
  to_name: 'SuiteSubscription Team',
  conf_num: 'OWNER-APP',
@@ -984,7 +984,7 @@
  const btn = document.querySelector('#contact-form-wrap .btn-rnext');
  btn.classList.add('loading'); btn.disabled = true;
  try {
- await emailjs.send('service_xzuymxb', 'template_yn9sdde', {
+ await emailjs.send('service_lbxsr09', 'template_yn9sdde', {
  to_email: 'info@suitesubscription.com',
  name: fname + ' ' + lname,
  email: email,
