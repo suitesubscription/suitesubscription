@@ -242,7 +242,7 @@
 </nav>
 
 <section class="hero">
- <div class="hero-badge">Now Launching in the Southeast US</div>
+
  <h1>Your Salon<br>Suite. <em>Monthly.</em><br>No Weekly Stress.</h1>
  <p>Stop paying by the week. SuiteSubscription gives beauty professionals access to premium salon suites on a flexible monthly membership so you can focus on your clients, not your calendar.</p>
  <p style="font-size:1.05rem;color:#1DB954;font-weight:600;max-width:520px;margin:-1rem 0 2rem;line-height:1.6;">Gain access to multiple salon suite locations in your city - all with one subscription.</p>
@@ -675,13 +675,53 @@
  <a href="#pricing" class="btn-dark">Start Your Membership Today</a>
 </div>
 
+<!-- CONTACT SECTION -->
+<div id="contact" style="background:var(--charcoal);padding:7rem 3rem;border-top:1px solid rgba(255,255,255,0.05);">
+ <div style="max-width:640px;margin:0 auto;">
+ <div class="section-label fade-in">Contact Us</div>
+ <h2 class="section-title fade-in">Get in <em>Touch</em></h2>
+ <p style="color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:3rem;" class="fade-in">Have a question? We'd love to hear from you. Fill out the form below and we'll get back to you within 24 hours.</p>
+
+ <div id="contact-form-wrap">
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
+ <div class="rfield"><label>First Name</label><input type="text" id="c-fname" placeholder="e.g. Tamika" /></div>
+ <div class="rfield"><label>Last Name</label><input type="text" id="c-lname" placeholder="e.g. Williams" /></div>
+ <div class="rfield"><label>Email Address</label><input type="email" id="c-email" placeholder="you@email.com" /></div>
+ <div class="rfield"><label>Phone Number</label><input type="tel" id="c-phone" placeholder="(404) 555-0100" /></div>
+ <div class="rfield" style="grid-column:1/-1;">
+ <label>Subject</label>
+ <select id="c-subject">
+ <option value="">-- Select a subject --</option>
+ <option value="General Question">General Question</option>
+ <option value="Membership Inquiry">Membership Inquiry</option>
+ <option value="Suite Owner Inquiry">Suite Owner Inquiry</option>
+ <option value="Billing Question">Billing Question</option>
+ <option value="Technical Support">Technical Support</option>
+ <option value="Partnership Opportunity">Partnership Opportunity</option>
+ <option value="Other">Other</option>
+ </select>
+ </div>
+ <div class="rfield" style="grid-column:1/-1;"><label>Message</label><textarea id="c-message" rows="5" placeholder="Tell us how we can help..."></textarea></div>
+ </div>
+ <button class="btn-rnext" onclick="submitContact()" style="width:100%;justify-content:center;"><span class="btn-label">Send Message</span><div class="spinner"></div></button>
+ <div class="error-msg" id="err-contact">Please fill in all required fields.</div>
+ </div>
+
+ <div id="contact-success" style="display:none;text-align:center;padding:3rem 0;">
+ <div class="success-icon" style="margin:0 auto 1.5rem;">&#10003;</div>
+ <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:0.5rem;">Message Sent!</h3>
+ <p style="color:var(--muted);">Thanks for reaching out. We'll get back to you within 24 hours at <strong style="color:var(--gold);">info@suitesubscription.com</strong>.</p>
+ </div>
+ </div>
+</div>
+
 <footer>
  <a class="logo" href="#">Suite<span>Subscription</span></a>
  <p>&copy; 2026 SuiteSubscription. Launching across the Southeast US.</p>
  <div style="display:flex;gap:2rem;">
  <a href="#">Privacy</a>
  <a href="#">Terms</a>
- <a href="#">Contact</a>
+ <a href="#contact">Contact</a>
  <a href="#pricing">Join Now</a>
  </div>
 </footer>
@@ -929,6 +969,42 @@
  document.getElementById('owner-form-wrap').style.display = 'none';
  document.getElementById('owner-success').style.display = 'block';
  setTimeout(closeOwnerModal, 4000);
+ }
+
+ async function submitContact() {
+ const fname = document.getElementById('c-fname').value.trim();
+ const lname = document.getElementById('c-lname').value.trim();
+ const email = document.getElementById('c-email').value.trim();
+ const phone = document.getElementById('c-phone').value.trim();
+ const subject = document.getElementById('c-subject').value;
+ const message = document.getElementById('c-message').value.trim();
+ const err = document.getElementById('err-contact');
+ if (!fname || !lname || !email || !subject || !message) { err.style.display = 'block'; return; }
+ err.style.display = 'none';
+ const btn = document.querySelector('#contact-form-wrap .btn-rnext');
+ btn.classList.add('loading'); btn.disabled = true;
+ try {
+ await emailjs.send('service_xzuymxb', 'template_z1n7vk8', {
+ to_email: 'info@suitesubscription.com',
+ to_name: 'SuiteSubscription Team',
+ conf_num: 'CONTACT',
+ member_name: fname + ' ' + lname,
+ email: email,
+ phone: phone || 'Not provided',
+ plan: subject,
+ location: 'N/A',
+ dates: 'N/A',
+ notes: message,
+ submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
+ });
+ document.getElementById('contact-form-wrap').style.display = 'none';
+ document.getElementById('contact-success').style.display = 'block';
+ } catch(e) {
+ console.error('Contact email error:', e);
+ err.textContent = 'Something went wrong. Please email us directly at info@suitesubscription.com';
+ err.style.display = 'block';
+ btn.classList.remove('loading'); btn.disabled = false;
+ }
  }
 
  document.querySelectorAll('a[href^="#"]').forEach(a => {
