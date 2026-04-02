@@ -787,4 +787,15 @@
  }
  document.getElementById('owner-form-wrap').style.display = 'none';
  document.getElementById('owner-success').style.display = 'block';
- setTimeout(closeOwnerModal, 400
+ setTimeout(closeOwnerModal, 4000);
+ }
+
+ document.querySelectorAll('a[href^="#"]').forEach(a => {
+ a.addEventListener('click', e => {
+ const target = document.querySelector(a.getAttribute('href'));
+ if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+ });
+ });
+</script>
+</body>
+</html>
