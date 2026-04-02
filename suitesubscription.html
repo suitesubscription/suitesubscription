@@ -419,6 +419,7 @@
  <input type="text" id="wl-name" placeholder="Your Full Name" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;" />
  <input type="email" id="wl-email" placeholder="Your Email Address" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;" />
  <input type="tel" id="wl-phone" placeholder="Your Phone Number" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;" />
+ <input type="text" id="wl-city" placeholder="Your City" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;" />
  <select id="wl-state" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;-webkit-appearance:none;">
  <option value="">-- Select Your State --</option>
  <option>Alabama</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
@@ -1025,9 +1026,10 @@
  const name = document.getElementById('wl-name').value.trim();
  const email = document.getElementById('wl-email').value.trim();
  const phone = document.getElementById('wl-phone').value.trim();
+ const city = document.getElementById('wl-city').value.trim();
  const state = document.getElementById('wl-state').value;
  const err = document.getElementById('wl-error');
- if (!name || !email || !state) { err.style.display = 'block'; return; }
+ if (!name || !email || !city || !state) { err.style.display = 'block'; return; }
  err.style.display = 'none';
  try {
  await emailjs.send('service_lbxsr09', 'template_z1n7vk8', {
@@ -1038,7 +1040,7 @@
  email: email,
  phone: phone || 'Not provided',
  plan: 'Waitlist Signup',
- location: state,
+ location: city + ', ' + state,
  dates: 'N/A',
  notes: 'Waitlist signup from location strip',
  submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
