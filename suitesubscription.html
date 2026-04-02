@@ -269,11 +269,11 @@
  <h2>List Your Suites.<br><em>Earn Every Month.</em></h2>
  <p>Partner with SuiteSubscription to fill your vacant suites with vetted beauty professionals. No chasing weekly payments - we handle billing, you collect revenue.</p>
  <div class="modal-grid">
- <div class="modal-field"><label>First Name</label><input type="text" id="o-fname" placeholder="e.g. Oliver" /></div>
- <div class="modal-field"><label>Last Name</label><input type="text" id="o-lname" placeholder="e.g. Smith" /></div>
- <div class="modal-field"><label>Email Address</label><input type="email" id="o-email" placeholder="you@email.com" /></div>
- <div class="modal-field"><label>Phone Number</label><input type="tel" id="o-phone" placeholder="(404) 555-0100" /></div>
- <div class="modal-field"><label>Business / Suite Name</label><input type="text" id="o-biz" placeholder="e.g. WeStyle Suites" /></div>
+ <div class="modal-field"><label>First Name</label><input type="text" id="o-fname" placeholder="First Name" /></div>
+ <div class="modal-field"><label>Last Name</label><input type="text" id="o-lname" placeholder="Last Name" /></div>
+ <div class="modal-field"><label>Email Address</label><input type="email" id="o-email" placeholder="Email Address" /></div>
+ <div class="modal-field"><label>Phone Number</label><input type="tel" id="o-phone" placeholder="Phone Number" /></div>
+ <div class="modal-field"><label>Business / Suite Name</label><input type="text" id="o-biz" placeholder="Business or Suite Name" /></div>
  <div class="modal-field">
  <label>Number of Available Suites</label>
  <select id="o-suites">
@@ -286,7 +286,7 @@
  </div>
  <div class="modal-field full">
  <label>City &amp; State</label>
- <input type="text" id="o-city" placeholder="e.g. College Park, GA" />
+ <input type="text" id="o-city" placeholder="City, State" />
  </div>
  </div>
  <button class="modal-submit" onclick="submitOwner()">Apply to List My Suites</button>
@@ -457,10 +457,10 @@
  <div id="reserve-form-wrap">
  <div class="rform-panel active" id="rpanel-1">
  <div class="rform-grid">
- <div class="rfield"><label>First Name</label><input type="text" id="r-fname" placeholder="e.g. Tamika" /></div>
- <div class="rfield"><label>Last Name</label><input type="text" id="r-lname" placeholder="e.g. Williams" /></div>
- <div class="rfield"><label>Email Address</label><input type="email" id="r-email" placeholder="you@email.com" /></div>
- <div class="rfield"><label>Phone Number</label><input type="tel" id="r-phone" placeholder="(404) 555-0100" /></div>
+ <div class="rfield"><label>First Name</label><input type="text" id="r-fname" placeholder="First Name" /></div>
+ <div class="rfield"><label>Last Name</label><input type="text" id="r-lname" placeholder="Last Name" /></div>
+ <div class="rfield"><label>Email Address</label><input type="email" id="r-email" placeholder="Email Address" /></div>
+ <div class="rfield"><label>Phone Number</label><input type="tel" id="r-phone" placeholder="Phone Number" /></div>
  <div class="rfield">
  <label>Your Membership Plan</label>
  <select id="r-plan">
@@ -619,7 +619,7 @@
  </optgroup>
  </select>
  </div>
- <div class="rfield full"><label>Special Requests (optional)</label><textarea id="r-notes" rows="2" placeholder="Any notes for your reservation..."></textarea></div>
+ <div class="rfield full"><label>Special Requests (optional)</label><textarea id="r-notes" rows="2" placeholder="Any special requests or notes..."></textarea></div>
  </div>
  <div class="rform-nav">
  <div></div>
@@ -684,10 +684,10 @@
 
  <div id="contact-form-wrap">
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem;">
- <div class="rfield"><label>First Name</label><input type="text" id="c-fname" placeholder="e.g. Tamika" /></div>
- <div class="rfield"><label>Last Name</label><input type="text" id="c-lname" placeholder="e.g. Williams" /></div>
- <div class="rfield"><label>Email Address</label><input type="email" id="c-email" placeholder="you@email.com" /></div>
- <div class="rfield"><label>Phone Number</label><input type="tel" id="c-phone" placeholder="(404) 555-0100" /></div>
+ <div class="rfield"><label>First Name</label><input type="text" id="c-fname" placeholder="First Name" /></div>
+ <div class="rfield"><label>Last Name</label><input type="text" id="c-lname" placeholder="Last Name" /></div>
+ <div class="rfield"><label>Email Address</label><input type="email" id="c-email" placeholder="Email Address" /></div>
+ <div class="rfield"><label>Phone Number</label><input type="tel" id="c-phone" placeholder="Phone Number" /></div>
  <div class="rfield" style="grid-column:1/-1;">
  <label>Subject</label>
  <select id="c-subject">
@@ -701,7 +701,7 @@
  <option value="Other">Other</option>
  </select>
  </div>
- <div class="rfield" style="grid-column:1/-1;"><label>Message</label><textarea id="c-message" rows="5" placeholder="Tell us how we can help..."></textarea></div>
+ <div class="rfield" style="grid-column:1/-1;"><label>Message</label><textarea id="c-message" rows="5" placeholder="Your message..."></textarea></div>
  </div>
  <button class="btn-rnext" onclick="submitContact()" style="width:100%;justify-content:center;"><span class="btn-label">Send Message</span><div class="spinner"></div></button>
  <div class="error-msg" id="err-contact">Please fill in all required fields.</div>
