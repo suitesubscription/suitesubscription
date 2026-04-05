@@ -49,21 +49,21 @@
  nav a.cta-nav-owner:hover { background: var(--gold); color: var(--black); }
  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center; padding: 1.5rem; backdrop-filter: blur(4px); }
  .modal-overlay.open { display: flex; animation: fadeUp 0.3s ease both; }
- .modal-box { background: #f2f2f2; border: 1px solid rgba(245,230,66,0.25); border-radius: 6px; padding: 3rem; max-width: 560px; width: 100%; position: relative; }
+ .modal-box { background: #f2f2f2; border: 1px solid rgba(245,230,66,0.25); border-radius: 6px; padding: 1.5rem 2rem; max-width: 620px; width: 100%; position: relative; max-height: 95vh; overflow-y: auto; }
  .modal-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
  .modal-close:hover { color: var(--white); }
- .modal-badge { display: inline-block; background: rgba(245,230,66,0.1); border: 1px solid rgba(245,230,66,0.3); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 1.25rem; }
- .modal-box h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.5rem; }
+ .modal-badge { display: inline-block; background: rgba(245,230,66,0.1); border: 1px solid rgba(245,230,66,0.3); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 0.6rem; }
+ .modal-box h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.15; margin-bottom: 0.4rem; }
  .modal-box h2 em { font-style: italic; color: var(--gold); }
- .modal-box p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
- .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+ .modal-box p { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.6rem; }
+ .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 0.75rem; }
  .modal-field { display: flex; flex-direction: column; gap: 0.4rem; }
  .modal-field.full { grid-column: 1 / -1; }
  .modal-field label { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
- .modal-field input, .modal-field select { background: #FFFFFF; border: 1px solid #ccc; border-radius: 2px; color: #000000; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; padding: 0.8rem 1rem; width: 100%; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
+ .modal-field input, .modal-field select { background: #FFFFFF; border: 1px solid #ccc; border-radius: 2px; color: #000000; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; padding: 0.55rem 0.8rem; width: 100%; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
  .modal-field input:focus, .modal-field select:focus { border-color: var(--gold); background: #FFFFFF !important; color: #000000 !important; } .modal-field input::placeholder { color: #999; }
  .modal-field select option { background: #F9F9F9; }
- .modal-submit { width: 100%; background: var(--gold); color: var(--black); border: none; padding: 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-radius: 2px; cursor: pointer; transition: all 0.25s; margin-top: 0.5rem; }
+ .modal-submit { width: 100%; background: var(--gold); color: var(--black); border: none; padding: 0.75rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-radius: 2px; cursor: pointer; transition: all 0.25s; margin-top: 0.4rem; }
  .modal-submit:hover { background: var(--gold-light); box-shadow: 0 6px 20px rgba(245,230,66,0.3); }
  .modal-success { text-align: center; padding: 2rem 0 1rem; display: none; }
  .modal-success .icon { font-size: 2.5rem; margin-bottom: 1rem; }
@@ -269,7 +269,7 @@
  <h2>List Your Suites.<br><em>Earn Every Month.</em></h2>
  <p>We built SuiteSubscription.com â€” a platform that connects beauty professionals with salon suites in their area. And we want to put your suites in front of them.</p>
  <p>Here's how it works for you:</p>
- <ul style="color:var(--muted);font-size:0.9rem;line-height:1.8;margin-bottom:2rem;padding-left:1.25rem;">
+ <ul style="color:var(--muted);font-size:0.85rem;line-height:1.6;margin-bottom:0.75rem;padding-left:1.25rem;">
   <li>We embed a simple button onto your website</li>
   <li>Beauty pros find your suites and sign up for membership</li>
   <li>You get an instant notification and automatic payment every time someone joins</li>
