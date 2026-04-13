@@ -775,7 +775,7 @@
  let selectedDates = [];
  let currentStep = 1;
 
- // â”€â”€ AIRTABLE CONFIG â”€â”€
+ // ── AIRTABLE CONFIG ──
  const AT_TOKEN = 'patrM9uBS7gCfle7v.edefa4fc1743c9ed66bd5b9662583d8b0a02129dccdb132f0c6e618dcbd733bc';
  const AT_BASE = 'appL7Qz9hxgVi6bxk';
  const AT_TABLE = 'Bookings';
@@ -1099,7 +1099,9 @@
  alert('Please fill in all fields before submitting.');
  return;
  }
+ const submittedAt = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
  try {
+ // 1. Notify SuiteSubscription team
  await emailjs.send('service_lbxsr09', 'template_z1n7vk8', {
  to_email: 'info@suitesubscription.com',
  to_name: 'SuiteSubscription Team',
@@ -1111,7 +1113,19 @@
  location: city,
  dates: suites + ' suites available',
  notes: 'Business: ' + biz,
- submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
+ submitted: submittedAt
+ });
+ // 2. Send confirmation to the applicant
+ await emailjs.send('service_lbxsr09', 'template_4kzfuva', {
+ to_email: email,
+ to_name: fname + ' ' + lname,
+ conf_num: 'OWNER-APP',
+ member_name: fname + ' ' + lname,
+ plan: 'Suite Owner Application',
+ location: city,
+ dates: suites + ' suites',
+ notes: 'Business: ' + biz,
+ phone: phone
  });
  } catch(e) {
  console.warn('Owner email failed:', e);
@@ -1188,5 +1202,8 @@
  });
  });
 </script>
+
+<!-- Lead Capture Bot disabled -->
+<!-- <script src="lead_gen/leadbot.js"></script> -->
 </body>
 </html>
