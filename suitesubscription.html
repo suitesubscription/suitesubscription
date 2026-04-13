@@ -1190,7 +1190,7 @@
  notes: 'Waitlist signup from location strip',
  submitted: new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })
  });
- } catch(e) { console.warn('Waitlist email failed:', e); }
+ } catch(e) { console.warn('Waitlist emaail failed:', e); }
  document.getElementById('waitlist-form-wrap').style.display = 'none';
  document.getElementById('waitlist-success').style.display = 'block';
  }
@@ -1203,6 +1203,7 @@
  });
 </script>
 
-
+<!-- Lead Capture Bot disabled -->
+<!-- <script src="lead_gen/leadbot.js"></script> -->
 </body>
 </html>
