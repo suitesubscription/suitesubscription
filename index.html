@@ -336,7 +336,7 @@
 </section>
 
 <div id="pricing">
- <div class="section-label fade-in">Membership Plans</div>
+<div class="section-label fade-in">Membership Plans</div>
  <h2 class="section-title fade-in">Invest in your<br><em>business, not fees.</em></h2>
  <p class="section-desc fade-in">Two plans designed for every stage of your beauty career. Pay once a month, use your suite, and keep every dollar you earn.</p>
  <div class="pricing-grid fade-in">
@@ -429,8 +429,7 @@
  <input type="text" id="wl-city" placeholder="Your City" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;" />
  <select id="wl-state" style="background:#FFFFFF;border:1px solid #ccc;border-radius:2px;color:#000000;font-family:'DM Sans',sans-serif;font-size:0.9rem;padding:0.75rem 1rem;width:100%;outline:none;-webkit-appearance:none;">
  <option value="">-- Select Your State --</option>
- <option>Alabama</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New J
-ersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+ <option>Alabama</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
  </select>
  <button onclick="submitWaitlist()" style="background:var(--green);color:#fff;border:none;padding:0.85rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;border-radius:2px;cursor:pointer;width:100%;">Join the Waitlist</button>
  <div id="wl-error" style="display:none;color:#fca5a5;font-size:0.82rem;">Please fill in all fields.</div>
@@ -776,7 +775,7 @@ ersey</option><option>New Mexico</option><option>New York</option><option>North 
  let selectedDates = [];
  let currentStep = 1;
 
- // â”€â”€ AIRTABLE CONFIG â”€â”€
+ // ── AIRTABLE CONFIG ──
  const AT_TOKEN = 'patrM9uBS7gCfle7v.edefa4fc1743c9ed66bd5b9662583d8b0a02129dccdb132f0c6e618dcbd733bc';
  const AT_BASE = 'appL7Qz9hxgVi6bxk';
  const AT_TABLE = 'Bookings';
@@ -1005,7 +1004,7 @@ ersey</option><option>New Mexico</option><option>New York</option><option>North 
  const datesStr = selectedDates.join(', ');
  const submittedAt = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
  try {
- await emailjs.send('service_lbxsr09', 'template_4kzfuva', {
+ await emailjs.send('service_lbxsr09', 'template_gkf3dch', {
  to_email: email,
  to_name: fname + ' ' + lname,
  conf_num: confNum,
@@ -1205,7 +1204,6 @@ ersey</option><option>New Mexico</option><option>New York</option><option>North 
 </script>
 
 <!-- Lead Capture Bot disabled -->
-<script src="lead_gen/leadbot.js"></script>
+<!-- <script src="lead_gen/leadbot.js"></script> -->
 </body>
 </html>
-
