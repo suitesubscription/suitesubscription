@@ -6,6 +6,7 @@
 <title>SuiteSubscription - Salon Suites on Your Terms</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AV3bhfoTv_mePTdmyu_806xa8OSSx54ommRhmISN87GAi2Xr6Um9DllCkGzr92pVZEboM1BhIZijlF1c&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
 <script>
  (function(){ emailjs.init({ publicKey: "yPHimPafzP_FD_bEr" }); })();
 </script>
@@ -126,6 +127,7 @@
  .plan-cta.gold:hover { background: var(--green-dark); box-shadow: 0 8px 24px rgba(29,185,84,0.4); }
  .plan-cta.outline { border: 1px solid rgba(255,255,255,0.2); color: var(--white); }
  .plan-cta.outline:hover { border-color: var(--green); color: var(--green); }
+ .paypal-btn-wrapper { margin-top: 1rem; }
  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 4rem; }
  .testimonial-card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.06); padding: 2rem; border-radius: 4px; transition: border-color 0.3s; }
  .testimonial-card:hover { border-color: rgba(201,168,76,0.3); }
@@ -355,7 +357,7 @@
  <li>Georgia locations (Atlanta Metro)</li>
  <li>Member-only booking portal access</li>
  </ul>
- <a href="https://buy.stripe.com/fZu3codSX8UM9W80fObjW02" target="_blank" class="plan-cta outline">Get Started - $97/mo</a>
+ <div id="paypal-button-container-P-63W53307XF9861512NHTINFI" class="paypal-btn-wrapper"></div>
  </div>
  <div class="pricing-card featured">
  <div class="plan-name">Pro</div>
@@ -373,10 +375,31 @@
  <li>Featured in member directory</li>
  <li>Georgia locations + Southeast expansion</li>
  </ul>
- <a href="https://buy.stripe.com/00w3co5mr9YQ4BO2nWbjW01" target="_blank" class="plan-cta gold">Go Pro - $297/mo</a>
+ <div id="paypal-button-container-P-8GG11263CP5855225NHTIPPI" class="paypal-btn-wrapper"></div>
  </div>
  </div>
 </div>
+<script>
+ paypal.Buttons({
+  style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+  createSubscription: function(data, actions) {
+   return actions.subscription.create({ plan_id: 'P-63W53307XF9861512NHTINFI' });
+  },
+  onApprove: function(data, actions) {
+   window.location.href = 'https://suitesubscription.com';
+  }
+ }).render('#paypal-button-container-P-63W53307XF9861512NHTINFI');
+
+ paypal.Buttons({
+  style: { shape: 'rect', color: 'gold', layout: 'vertical', label: 'subscribe' },
+  createSubscription: function(data, actions) {
+   return actions.subscription.create({ plan_id: 'P-8GG11263CP5855225NHTIPPI' });
+  },
+  onApprove: function(data, actions) {
+   window.location.href = 'https://suitesubscription.com';
+  }
+ }).render('#paypal-button-container-P-8GG11263CP5855225NHTIPPI');
+</script>
 
 <section>
  <div class="section-label fade-in">What Members Say</div>
