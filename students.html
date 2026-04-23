@@ -232,5 +232,602 @@
     .step:last-child { border-right: none; }
     .step-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-s
-...(truncated)...
+      font-size: 80px; color: rgba(0,200,83,0.08);
+      line-height: 1; margin-bottom: 20px;
+      display: block;
+    }
+    .step-title { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+    .step-text { font-size: 14px; color: #888; line-height: 1.7; }
+
+    /* ── PRICING ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px; margin-top: 56px;
+    }
+    .price-card {
+      background: var(--mid);
+      border: 1px solid var(--light);
+      border-radius: 12px;
+      padding: 40px 36px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .price-card:hover { border-color: var(--green); }
+    .price-card.featured {
+      border-color: var(--green);
+      background: linear-gradient(135deg, rgba(0,200,83,0.08), var(--mid));
+    }
+    .price-badge {
+      position: absolute; top: 20px; right: 20px;
+      background: var(--green); color: var(--black);
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+      letter-spacing: 0.08em;
+    }
+    .price-tier {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.15em;
+      color: var(--muted); margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .price-amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px; color: var(--text);
+      line-height: 1;
+    }
+    .price-amount sup { font-size: 24px; color: var(--muted); vertical-align: top; padding-top: 10px; }
+    .price-period { font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+    .price-features { list-style: none; margin-bottom: 36px; }
+    .price-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: #CCCCCC;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .btn-tier {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px; border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .btn-tier.primary { background: var(--green); color: var(--black); }
+    .btn-tier.primary:hover { background: var(--yellow); }
+    .btn-tier.outline { background: transparent; color: var(--text); border: 1px solid var(--light); }
+    .btn-tier.outline:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── TESTIMONIALS ── */
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px; margin-top: 56px;
+    }
+    .testi-card {
+      background: var(--mid);
+      border: 1px solid var(--light);
+      border-radius: 8px; padding: 32px 28px;
+      transition: border-color 0.3s;
+    }
+    .testi-card:hover { border-color: rgba(0,200,83,0.4); }
+    .testi-stars { color: var(--yellow); font-size: 14px; margin-bottom: 16px; }
+    .testi-quote { font-size: 15px; line-height: 1.75; color: #CCCCCC; margin-bottom: 20px; font-style: italic; }
+    .testi-name { font-size: 13px; font-weight: 600; }
+    .testi-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── PARTNER CTA ── */
+    .partner-section {
+      background: linear-gradient(135deg, rgba(255,214,0,0.06), rgba(0,200,83,0.06));
+      border-top: 1px solid var(--light);
+      border-bottom: 1px solid var(--light);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    .partner-inner { max-width: 680px; margin: 0 auto; }
+    .partner-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 0.15em;
+      color: var(--yellow); margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 48px 40px;
+      border-top: 1px solid var(--light);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; color: var(--green); text-decoration: none; }
+    .footer-logo span { color: var(--yellow); }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--mid);
+      border: 1px solid var(--light);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 480px; width: 100%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: none;
+      color: var(--muted); font-size: 20px;
+      cursor: pointer; line-height: 1;
+    }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px; margin-bottom: 6px;
+    }
+    .modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label {
+      display: block; font-size: 12px;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.08em; color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%; padding: 12px 16px;
+      background: var(--black);
+      border: 1px solid var(--light);
+      border-radius: 6px; color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--green); }
+    .form-select {
+      width: 100%; padding: 12px 16px;
+      background: var(--black);
+      border: 1px solid var(--light);
+      border-radius: 6px; color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+    .form-select:focus { border-color: var(--green); }
+    .form-btn {
+      width: 100%; padding: 14px;
+      background: var(--green); color: var(--black);
+      border: none; border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer; margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .form-btn:hover { background: var(--yellow); }
+    .form-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+    /* success state */
+    .modal-success { display: none; text-align: center; padding: 20px 0; }
+    .modal-success.show { display: block; }
+    .modal-form-inner { display: block; }
+    .modal-form-inner.hide { display: none; }
+
+    @media (max-width: 640px) {
+      .nav { padding: 14px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .section { padding: 70px 20px; }
+      .how-bg { padding: 70px 20px; }
+      .step { border-right: none; border-bottom: 1px solid var(--light); }
+      .step:last-child { border-bottom: none; }
+      .hero-stat-row { gap: 24px; flex-wrap: wrap; }
+      .footer { flex-direction: column; align-items: flex-start; }
+      .modal { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="/" class="nav-logo">Suite<span>Subscription</span></a>
+    <button class="nav-cta" onclick="openModal('Starter')">Get Started Free →</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        FOR COSMETOLOGY STUDENTS &amp; NEW GRADUATES
+      </div>
+      <h1 class="hero-h1">
+        YOUR LICENSE.<br />
+        YOUR <span class="accent">SUITE.</span><br />
+        YOUR <span class="accent-y">EMPIRE.</span>
+      </h1>
+      <p class="hero-sub">
+        SuiteSubscription connects beauty graduates with available salon suites —
+        so you can go from student to suite owner faster than anyone told you was possible.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="openModal('Starter')">Find My Suite — $97/mo</button>
+        <button class="btn-ghost" onclick="openModal('Pro')">Go Pro — $297/mo</button>
+      </div>
+      <div class="hero-stat-row">
+        <div>
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">MARKETS ACTIVE</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">$0</div>
+          <div class="hero-stat-label">SETUP FEES</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">30s</div>
+          <div class="hero-stat-label">TO RESERVE A SUITE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="ticker-item">Cosmetology Students <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Beauty Professionals <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Suite Owners <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Estheticians <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Nail Technicians <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Barbers <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Natural Hair Stylists <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Lash Artists <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Cosmetology Students <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Beauty Professionals <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Suite Owners <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Estheticians <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Nail Technicians <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Barbers <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Natural Hair Stylists <span class="ticker-sep">◆</span></span>
+      <span class="ticker-item">Lash Artists <span class="ticker-sep">◆</span></span>
+    </div>
+  </div>
+
+  <!-- PAIN POINTS -->
+  <div class="section">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-h2">BEAUTY SCHOOL<br />DIDN'T TEACH YOU THIS</h2>
+    <p class="section-sub">You spent years perfecting your craft. But nobody gave you the roadmap to launch your own business.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <span class="pain-icon">😤</span>
+        <div class="pain-title">Booth Rental Pressure</div>
+        <div class="pain-text">Traditional booths tie you to an employer's schedule, clients, and commission cuts — before you even get started.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">🔍</span>
+        <div class="pain-title">No Clue Where to Start</div>
+        <div class="pain-text">Beauty school teaches techniques. Nobody teaches you how to find a suite, negotiate a lease, or build clientele.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">💸</span>
+        <div class="pain-title">Hidden Costs Everywhere</div>
+        <div class="pain-text">Security deposits, product inventory, insurance, marketing — it adds up fast without a roadmap.</div>
+      </div>
+      <div class="pain-card">
+        <span class="pain-icon">⏰</span>
+        <div class="pain-title">Time Wasted on Search</div>
+        <div class="pain-text">Scrolling Facebook groups and Craigslist for suite openings is not a strategy. It's a part-time job.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-bg">
+    <div class="how-inner">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-h2">FROM GRADUATE<br />TO SUITE OWNER</h2>
+      <p class="section-sub">Four steps. No guesswork. No gatekeeping.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div class="step-title">Choose Your Plan</div>
+          <div class="step-text">Pick Starter or Pro based on where you are in your journey. No contracts. Cancel anytime.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div class="step-title">Browse Available Suites</div>
+          <div class="step-text">Access our curated network of suite locations in your market — filtered by availability, price, and amenities.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div class="step-title">Reserve &amp; Move In</div>
+          <div class="step-text">Submit your reservation directly through the platform. Suite owners get notified instantly.</div>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div class="step-title">Grow Your Business</div>
+          <div class="step-text">Use Pro resources — business templates, marketing guides, and member community — to build a thriving clientele.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-h2">START WHERE<br />YOU ARE</h2>
+    <p class="section-sub">No contracts. No long-term commitments. Upgrade or cancel anytime.</p>
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="price-card">
+        <div class="price-tier">Starter Plan</div>
+        <div class="price-amount"><sup>$</sup>97</div>
+        <div class="price-period">per month · billed monthly</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Access to suite listings across the network</li>
+          <li><span class="check">✓</span> 1-click reservation request</li>
+          <li><span class="check">✓</span> Email confirmation &amp; suite details</li>
+          <li><span class="check">✓</span> New listing alerts for your market</li>
+          <li><span class="check">✓</span> Member-only move-in specials</li>
+        </ul>
+        <button class="btn-tier outline" onclick="openModal('Starter')">Get Started</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="price-card featured">
+        <div class="price-badge">MOST POPULAR</div>
+        <div class="price-tier">Pro Plan</div>
+        <div class="price-amount"><sup>$</sup>297</div>
+        <div class="price-period">per month · billed monthly</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Everything in Starter</li>
+          <li><span class="check">✓</span> Priority suite placement</li>
+          <li><span class="check">✓</span> Business launch toolkit (pricing, contracts, intake forms)</li>
+          <li><span class="check">✓</span> Marketing guide for new suite owners</li>
+          <li><span class="check">✓</span> Private member community access</li>
+          <li><span class="check">✓</span> Monthly live Q&amp;A with industry mentors</li>
+          <li><span class="check">✓</span> Early access to new locations</li>
+        </ul>
+        <button class="btn-tier primary" onclick="openModal('Pro')">Go Pro Today</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="how-bg">
+    <div class="how-inner">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-h2">THEY MADE<br />THE MOVE</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"I graduated in May and had my own suite by June. SuiteSubscription made the whole process simple. I didn't know where to start and now I'm fully booked."</div>
+          <div class="testi-name">Destiny M.</div>
+          <div class="testi-role">Licensed Cosmetologist · Atlanta, GA</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"The Pro plan resources alone were worth it. The business templates saved me hours figuring out pricing and client intake forms."</div>
+          <div class="testi-name">Keisha T.</div>
+          <div class="testi-role">Esthetician · College Park, GA</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"I was working at a chain salon splitting 60/40. Two months after joining I had my own suite. My take-home doubled."</div>
+          <div class="testi-name">Jasmine R.</div>
+          <div class="testi-role">Natural Hair Specialist · Macon, GA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUITE OWNER PARTNER CTA -->
+  <div class="partner-section">
+    <div class="partner-inner">
+      <div class="partner-label">For Suite Owners &amp; Operators</div>
+      <h2 class="section-h2" style="font-size: clamp(36px,5vw,56px);">OWN A SUITE LOCATION?</h2>
+      <p style="font-size:16px;color:#AAAAAA;line-height:1.8;margin-bottom:32px;">
+        Partner with SuiteSubscription to fill vacancies faster. We connect motivated, licensed professionals
+        directly to your available suites — no cold calls, no vacancy stress.
+      </p>
+      <button class="btn-primary" onclick="openModal('Partner')">Become a Partner Location →</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="/" class="footer-logo">Suite<span>Subscription</span></a>
+    <div class="footer-copy">© 2025 SuiteSubscription.com · Wilcov Holdings</div>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</div><!-- /.page -->
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- Form -->
+    <div class="modal-form-inner" id="modalFormInner">
+      <div class="modal-title" id="modalTitle">JOIN STARTER</div>
+      <div class="modal-sub" id="modalSub">Start your Starter membership today. No contracts.</div>
+
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" id="formName" placeholder="Your name" type="text" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" id="formEmail" placeholder="you@email.com" type="email" />
+      </div>
+
+      <!-- Student status (hidden for Partner) -->
+      <div class="form-group" id="schoolGroup">
+        <label class="form-label">Beauty School / Licensing Status</label>
+        <select class="form-select" id="formSchool">
+          <option value="">Select one...</option>
+          <option>Currently enrolled in beauty school</option>
+          <option>Recently graduated (0–12 months)</option>
+          <option>Licensed &amp; working at a salon</option>
+          <option>Licensed &amp; looking for my first suite</option>
+        </select>
+      </div>
+
+      <!-- Location (Partner only) -->
+      <div class="form-group" id="locationGroup" style="display:none;">
+        <label class="form-label">Suite Location / City</label>
+        <input class="form-input" id="formLocation" placeholder="e.g. Atlanta, GA" type="text" />
+      </div>
+
+      <button class="form-btn" id="formSubmitBtn" onclick="handleSubmit()">
+        Reserve My Spot — $97/mo →
+      </button>
+      <div class="form-note">🔒 No payment collected here. You'll be directed to complete checkout.</div>
+    </div>
+
+    <!-- Success -->
+    <div class="modal-success" id="modalSuccess">
+      <div style="font-size:48px;margin-bottom:16px;">✅</div>
+      <div class="modal-title">YOU'RE IN</div>
+      <p style="color:#AAAAAA;font-size:15px;line-height:1.7;margin-top:12px;" id="modalSuccessMsg">
+        We received your info. Check your inbox — your next step to get into a suite is on the way.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+  // Init EmailJS
+  emailjs.init('yPHimPafzP_FD_bEr');
+
+  let currentPlan = 'Starter';
+
+  function openModal(plan) {
+    currentPlan = plan;
+    const overlay = document.getElementById('modalOverlay');
+    const title = document.getElementById('modalTitle');
+    const sub = document.getElementById('modalSub');
+    const btn = document.getElementById('formSubmitBtn');
+    const schoolGroup = document.getElementById('schoolGroup');
+    const locationGroup = document.getElementById('locationGroup');
+
+    // Reset form state
+    document.getElementById('formName').value = '';
+    document.getElementById('formEmail').value = '';
+    document.getElementById('formSchool').value = '';
+    document.getElementById('formLocation').value = '';
+    document.getElementById('modalFormInner').classList.remove('hide');
+    document.getElementById('modalSuccess').classList.remove('show');
+
+    if (plan === 'Partner') {
+      title.textContent = 'PARTNER WITH US';
+      sub.textContent = 'Tell us about your suite location and we\'ll be in touch.';
+      btn.textContent = 'Submit Partnership Request →';
+      schoolGroup.style.display = 'none';
+      locationGroup.style.display = 'block';
+    } else {
+      const price = plan === 'Pro' ? '297' : '97';
+      title.textContent = 'JOIN ' + plan.toUpperCase();
+      sub.textContent = 'Start your ' + plan + ' membership today. No contracts.';
+      btn.textContent = 'Reserve My Spot — $' + price + '/mo →';
+      schoolGroup.style.display = 'block';
+      locationGroup.style.display = 'none';
+    }
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function handleSubmit() {
+    const name = document.getElementById('formName').value.trim();
+    const email = document.getElementById('formEmail').value.trim();
+    const btn = document.getElementById('formSubmitBtn');
+
+    if (!name || !email) {
+      alert('Please enter your name and email to continue.');
+      return;
+    }
+
+    // Determine extra field value
+    let extra = '';
+    if (currentPlan === 'Partner') {
+      extra = document.getElementById('formLocation').value.trim();
+    } else {
+      extra = document.getElementById('formSchool').value;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      plan: currentPlan,
+      extra_info: extra || 'Not provided',
+      page: 'Students Landing Page',
+    };
+
+    // Send admin notification
+    emailjs.send('service_lbxsr09', 'template_z1n7vk8', templateParams)
+      .then(() => {
+        // Send confirmation to applicant
+        return emailjs.send('service_lbxsr09', 'template_4kzfuva', templateParams);
+      })
+      .then(() => {
+        showSuccess(name);
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        // Still show success to user — don't block on email failure
+        showSuccess(name);
+      });
+  }
+
+  function showSuccess(name) {
+    document.getElementById('modalFormInner').classList.add('hide');
+    const success = document.getElementById('modalSuccess');
+    const firstName = name.split(' ')[0];
+    document.getElementById('modalSuccessMsg').textContent =
+      'We received your info, ' + firstName + '. Check your inbox — your next step to get into a suite is on the way.';
+    success.classList.add('show');
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
