@@ -241,6 +241,23 @@
  #pricing { padding: 5rem 1.5rem; }
  footer { flex-direction: column; text-align: center; }
  .cta-band { padding: 4rem 1.5rem; }
+ body { padding-bottom: 4.75rem; }
+ }
+ .sticky-cta { display: none; }
+ @media (max-width: 768px) {
+ .sticky-cta {
+ display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+ position: fixed; left: 0; right: 0; bottom: 0; z-index: 1500;
+ background: rgba(10,10,10,0.92); backdrop-filter: blur(8px);
+ border-top: 1px solid rgba(245,230,66,0.25);
+ padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+ transform: translateY(0); transition: transform 0.3s ease;
+ }
+ .sticky-cta.hidden { transform: translateY(100%); }
+ .sticky-cta-text { display: flex; flex-direction: column; line-height: 1.25; }
+ .sticky-cta-text strong { color: var(--white); font-size: 0.85rem; font-weight: 700; }
+ .sticky-cta-text span { color: var(--muted); font-size: 0.72rem; }
+ .sticky-cta .sticky-cta-btn { flex-shrink: 0; background: var(--gold); color: var(--black); padding: 0.65rem 1.2rem; border-radius: 2px; font-weight: 600; font-size: 0.8rem; text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; }
  }
 </style>
 </head>
@@ -255,6 +272,11 @@
  <a href="#pricing" class="cta-nav">Join Now</a>
  </div>
 </nav>
+
+<div class="sticky-cta" id="sticky-cta">
+ <div class="sticky-cta-text"><strong>Get Your Suite</strong><span>Starting at $97/mo</span></div>
+ <a href="#pricing" class="sticky-cta-btn">Join Now</a>
+</div>
 
 <section class="hero">
 
@@ -1237,6 +1259,15 @@
  if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
  });
  });
+
+ const stickyCta = document.getElementById('sticky-cta');
+ const pricingSection = document.getElementById('pricing');
+ if (stickyCta && pricingSection) {
+ const pricingObserver = new IntersectionObserver((entries) => {
+ entries.forEach((entry) => { stickyCta.classList.toggle('hidden', entry.isIntersecting); });
+ }, { threshold: 0.15 });
+ pricingObserver.observe(pricingSection);
+ }
 </script>
 
 <!-- Lead Capture Bot disabled -->
